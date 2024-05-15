@@ -1,0 +1,20 @@
+
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      fontFamily:{
+        raleway:'"Raleway", sans-serif',
+        inter:'"Inter", sans-serif',
+        cinzel:'"Cinzel", serif',
+      }
+    },
+  },
+  plugins: [
+    require('daisyui'),
+  ],
+}
+
