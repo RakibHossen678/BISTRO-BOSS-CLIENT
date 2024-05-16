@@ -6,13 +6,10 @@ import img4 from "../../../assets/menu/salad-bg.jpg";
 import img5 from "../../../assets/menu/soup-bg.jpg";
 import useMenu from "../../../Hooks/useMenu";
 import Title from "../../Shared/Title";
-import MenuItem from "../../Shared/MenuItem";
 import MenuCategory from "../MenuCategory/MenuCategory";
-import MainLayout from "../../../Layout/MainLayout";
 const Menu = () => {
   const [menu] = useMenu();
   const offered = menu.filter((item) => item.category === "offered");
-  const popular = menu.filter((item) => item.category === "dessert");
   const soup = menu.filter((item) => item.category === "soup");
   const salad = menu.filter((item) => item.category === "salad");
   const pizza = menu.filter((item) => item.category === "pizza");
