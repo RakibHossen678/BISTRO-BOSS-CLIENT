@@ -19,14 +19,15 @@ const Navbar = () => {
             <NavLink to='/menu' className={({isActive})=>isActive ? 'text-[#EEFF25]':''}>Our Menu</NavLink>
           </li>
           <li>
+            <NavLink to='/shop' className={({isActive})=>isActive ? 'text-[#EEFF25]':''}>Our Shop</NavLink>
+          </li>
+          <li>
             <a>Contact Us</a>
           </li>
           <li>
             <a>Dashboard</a>
           </li>
-          <li>
-            <a>Our Shop</a>
-          </li>
+          
           <li>
             <img className="w-16" src={cart} alt="" />
           </li>
