@@ -4,7 +4,7 @@ import img1 from "../../../../assets/home/featured.jpg";
 const Featured = () => {
   return (
     <div
-      className="my-20 pt-28 pb-32 bg-cover bg-center object-cover text-white"
+      className="my-20 bg-fixed pt-28 pb-32 bg-cover bg-center object-cover text-white"
       style={{
         backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${img1})`,
       }}
@@ -17,7 +17,7 @@ const Featured = () => {
         
       </div>
       <div className="">
-        <div className="flex justify-center items-center gap-7">
+        <div className="flex  justify-center items-center gap-7">
           <img className="w-[450px]" src={img1} alt="" />
           <div className="w-[550px] font-inter">
             <h2 className="text-lg py-2">March 20, 2023.</h2>
@@ -30,16 +30,7 @@ const Featured = () => {
               courses, each dish is a celebration of flavors, crafted with love
               and expertise. Indulge in our array of culinary creations.
             </p>
-            <a className="relative  px-5 py-3 overflow-hidden font-medium text-gray-600 bg-gray-100 border border-gray-100 rounded-xl shadow-inner group">
-              <span className="absolute top-0 left-0 w-0 h-0 transition-all duration-200 border-t-2 border-gray-600 group-hover:w-full ease"></span>
-              <span className="absolute bottom-0 right-0 w-0 h-0 transition-all duration-200 border-b-2 border-gray-600 group-hover:w-full ease"></span>
-              <span className="absolute top-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-gray-600 group-hover:h-full ease rounded-xl"></span>
-              <span className="absolute bottom-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-gray-600 group-hover:h-full ease"></span>
-              <span className="absolute inset-0 w-full h-full duration-300 delay-300 bg-gray-900 opacity-0 group-hover:opacity-100"></span>
-              <span className="relative transition-colors duration-300 delay-200 group-hover:text-white ease">
-                Read More
-              </span>
-            </a>
+            <button className=" border-b-2 rounded-lg px-4 py-2">Read More</button>
           </div>
         </div>
       </div>
