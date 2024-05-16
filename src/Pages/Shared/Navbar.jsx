@@ -13,16 +13,16 @@ const Navbar = () => {
       <div className="flex-none">
         <ul className="space-x-8 menu-horizontal px-1 text-white font-inter items-center font-semibold">
           <li>
-            <NavLink to='/' className={(isActive)=>isActive ? 'text-[#EEFF25]':''}>Home</NavLink>
+            <NavLink to='/' className={({isActive})=>isActive ? 'text-[#EEFF25]':''}>Home</NavLink>
+          </li>
+          <li>
+            <NavLink to='/menu' className={({isActive})=>isActive ? 'text-[#EEFF25]':''}>Our Menu</NavLink>
           </li>
           <li>
             <a>Contact Us</a>
           </li>
           <li>
             <a>Dashboard</a>
-          </li>
-          <li>
-            <a>Our Menu</a>
           </li>
           <li>
             <a>Our Shop</a>
