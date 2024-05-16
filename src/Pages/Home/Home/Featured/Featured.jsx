@@ -1,4 +1,3 @@
-
 import img1 from "../../../../assets/home/featured.jpg";
 
 const Featured = () => {
@@ -10,11 +9,14 @@ const Featured = () => {
       }}
     >
       <div className="">
-      <div className="text-center py-8">
-            <p className="text-[#D99904] font-inter  italic py-2">---Check it out---</p>
-            <h3 className="border-t-4 border-b-4 py-4 mx-auto max-w-sm my-4 border-t-[#E8E8E8] border-b-[#E8E8E8] text-white font-inter text-3xl font-medium">FROM OUR MENU</h3>
+        <div className="text-center py-8">
+          <p className="text-[#D99904] font-inter  italic py-2">
+            ---Check it out---
+          </p>
+          <h3 className="border-t-4 border-b-4 py-4 mx-auto max-w-sm my-4 border-t-[#E8E8E8] border-b-[#E8E8E8] text-white font-inter text-3xl font-medium">
+            FROM OUR MENU
+          </h3>
         </div>
-        
       </div>
       <div className="">
         <div className="flex  justify-center items-center gap-7">
@@ -30,7 +32,9 @@ const Featured = () => {
               courses, each dish is a celebration of flavors, crafted with love
               and expertise. Indulge in our array of culinary creations.
             </p>
-            <button className=" border-b-2 rounded-lg px-4 py-2">Read More</button>
+            <button className=" border-b-2 rounded-lg px-4 py-2">
+              Read More
+            </button>
           </div>
         </div>
       </div>

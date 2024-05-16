@@ -16,7 +16,7 @@ const Cover = ({ header, subHeader, bgImg }) => {
               <h1 className="text-7xl font-cinzel font-semibold py-2">
                 {header}
               </h1>
-              <p className="text-lg font-medium font-cinzel">{subHeader}</p>
+              <p className="text-lg max-w-2xl font-medium font-cinzel">{subHeader}</p>
             </div>
           </div>
         </div>
