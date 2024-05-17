@@ -13,7 +13,7 @@ const Cover = ({ header, subHeader, bgImg }) => {
           <div className="hero-overlay bg-opacity-60"></div>
           <div className="text-center h-56 min-w-[75%] bg-gradient-to-r from-[rgba(0,0,0,0.5)] to-[rgba(0,0,0,0.5)] flex justify-center items-center text-white">
             <div className="flex flex-col justify-center items-center">
-              <h1 className="text-7xl font-cinzel font-semibold py-2">
+              <h1 className="text-7xl font-cinzel font-semibold py-2 uppercase">
                 {header}
               </h1>
               <p className="text-lg max-w-2xl font-medium font-cinzel">{subHeader}</p>
