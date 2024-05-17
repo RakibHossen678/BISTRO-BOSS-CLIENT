@@ -1,0 +1,19 @@
+.react-tabs__tab {
+  margin: 0 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+}
+
+.react-tabs__tab:focus {
+  color: #bb8506;
+  border: none;
+  outline: none;
+}
+
+.react-tabs__tab--selected{
+    color: #bb8506;
+    border-bottom: 2px solid #bb8506;
+}
