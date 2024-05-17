@@ -13,7 +13,7 @@ const Testimonial = () => {
   const [reviews, setReviews] = useState([]);
   const [rating, setRating] = useState(3);
   useEffect(() => {
-    fetch("reviews.json")
+    fetch("http://localhost:5000/review")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);
@@ -38,10 +38,12 @@ const Testimonial = () => {
                     />
                   </div>
                   <div className="text-6xl flex justify-center py-4">
-                  <FaQuoteLeft />
+                    <FaQuoteLeft />
                   </div>
                   <p className="font-inter">{review.details}</p>
-                  <h2 className="text-[#CD9003] text-2xl font-inter font-medium py-2">{review.name}</h2>
+                  <h2 className="text-[#CD9003] text-2xl font-inter font-medium py-2">
+                    {review.name}
+                  </h2>
                 </div>
               </SwiperSlide>
             ))}

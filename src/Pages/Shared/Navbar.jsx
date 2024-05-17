@@ -19,7 +19,7 @@ const Navbar = () => {
             <NavLink to='/menu' className={({isActive})=>isActive ? 'text-[#EEFF25]':''}>Our Menu</NavLink>
           </li>
           <li>
-            <NavLink to='/shop' className={({isActive})=>isActive ? 'text-[#EEFF25]':''}>Our Shop</NavLink>
+            <NavLink to='/shop/salad' className={({isActive})=>isActive ? 'text-[#EEFF25]':''}>Our Shop</NavLink>
           </li>
           <li>
             <a>Contact Us</a>
