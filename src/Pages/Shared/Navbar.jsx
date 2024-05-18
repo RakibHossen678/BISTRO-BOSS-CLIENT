@@ -1,7 +1,9 @@
 import { Link, NavLink } from "react-router-dom";
 import cart from "../../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png";
-// import profile from "../../assets/others/profile.png";
+import useAuth from "../../Hooks/useAuth";
+import profile from "../../assets/others/profile.png";
 const Navbar = () => {
+  const {user,logout}=useAuth()
   return (
     <div className="navbar bg-[#1515153b] fixed z-10 px-6 py-2">
       <div className="flex-1">
@@ -49,7 +51,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div>
-        {/* {user ? (
+        {user ? (
           <div className="flex-none pl-4">
             <div className="dropdown dropdown-end">
               <div
@@ -66,23 +68,18 @@ const Navbar = () => {
                 className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
               >
                 <li>
-                  <a>Settings</a>
+                  <a >Settings</a>
                 </li>
                 <li>
-                  <a>Logout</a>
+                  <a onClick={()=>logout()}>Logout</a>
                 </li>
               </ul>
             </div>
           </div>
         ) : (
-          <div>
-            <button>Login</button>
-            <button>Login</button>
-          </div>
-        )} */}
-        <div className="text-white space-x-2">
+           <div className="text-white space-x-2">
           <Link to='/login'>
-            <button className="px-6 rounded-lg font-inter bg-[#BB8506] py-3">
+            <button  className="px-6 rounded-lg font-inter bg-[#BB8506] py-3">
               Login
             </button>
           </Link>
@@ -92,6 +89,8 @@ const Navbar = () => {
             </button>
           </Link>
         </div>
+        )}
+       
       </div>
     </div>
   );
