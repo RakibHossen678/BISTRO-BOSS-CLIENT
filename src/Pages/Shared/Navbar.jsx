@@ -1,9 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
-import cart from "../../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png";
+import cart from "../../assets/icons8-shopping-cart-64.png";
 import useAuth from "../../Hooks/useAuth";
-import profile from "../../assets/others/profile.png";
+import useCart from "../../Hooks/useCart";
 const Navbar = () => {
-  const {user,logout}=useAuth()
+  const [carts]=useCart()
+  
+  const { user, logout } = useAuth();
   return (
     <div className="navbar bg-[#1515153b] fixed z-10 px-6 py-2">
       <div className="flex-1">
@@ -46,7 +48,12 @@ const Navbar = () => {
           </li>
 
           <li>
-            <img className="w-16" src={cart} alt="" />
+            <div className="indicator">
+              <span className="indicator-item badge bg-red-500 border-none text-white">
+                {carts.length}
+              </span>
+              <img className="w-12 rounded-full" src={cart} alt="" />
+            </div>
           </li>
         </ul>
       </div>
@@ -59,8 +66,8 @@ const Navbar = () => {
                 role="button"
                 className="btn btn-ghost btn-circle avatar"
               >
-                <div className="w-12 rounded-full">
-                  <img alt="Tailwind CSS Navbar component" src={profile} />
+                <div className="w-12 border-2 p-2 rounded-full">
+                  <img alt="Tailwind CSS Navbar component" src={user.photoURL} />
                 </div>
               </div>
               <ul
@@ -68,29 +75,28 @@ const Navbar = () => {
                 className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
               >
                 <li>
-                  <a >Settings</a>
+                  <a>{user?.displayName}</a>
                 </li>
                 <li>
-                  <a onClick={()=>logout()}>Logout</a>
+                  <a onClick={() => logout()}>Logout</a>
                 </li>
               </ul>
             </div>
           </div>
         ) : (
-           <div className="text-white space-x-2">
-          <Link to='/login'>
-            <button  className="px-6 rounded-lg font-inter bg-[#BB8506] py-3">
-              Login
-            </button>
-          </Link>
-          <Link to='/register'>
-            <button className=" px-6 rounded-lg font-inter bg-[#BB8506] py-3">
-              Register
-            </button>
-          </Link>
-        </div>
+          <div className="text-white space-x-2">
+            <Link to="/login">
+              <button className="px-6 rounded-lg font-inter bg-[#BB8506] py-3">
+                Login
+              </button>
+            </Link>
+            <Link to="/register">
+              <button className=" px-6 rounded-lg font-inter bg-[#BB8506] py-3">
+                Register
+              </button>
+            </Link>
+          </div>
         )}
-       
       </div>
     </div>
   );

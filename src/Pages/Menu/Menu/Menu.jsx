@@ -36,7 +36,7 @@ const Menu = () => {
           <div>
             <div className="my-20">
               <MenuCategory
-                header={"deserts"}
+                header="deserts"
                 subHeader={
                   "Indulge your senses in a symphony of sweetness with our divine desserts. Each creation is a masterpiece, meticulously crafted to delight your palate and captivate your imagination."
                 }

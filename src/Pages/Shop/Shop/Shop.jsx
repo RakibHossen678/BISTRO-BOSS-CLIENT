@@ -7,7 +7,6 @@ import { useState } from "react";
 import useMenu from "../../../Hooks/useMenu";
 import OrderTab from "../OrderTab/OrderTab";
 import { useParams } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 const Shop = () => {
   const categories=['salad','pizza','soup',
   'deserts','drinks']  

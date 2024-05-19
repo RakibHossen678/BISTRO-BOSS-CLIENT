@@ -4,25 +4,28 @@ import loginImg from "../../assets/others/authentication1.png";
 import logo from "../../assets/logo.png";
 import bg from "../../assets/others/authentication.png";
 import { Link } from "react-router-dom";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 
 const Register = () => {
-  const navigate=useNavigate()
-  const {createUser}=useAuth()
- 
+  const navigate = useNavigate();
+  const { createUser, updateUserProfile ,setUser,user} = useAuth();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    createUser(data.email,data.password)
-    .then(result=>{
-      const loggedUser=result.user;
-      console.log(loggedUser)
-      navigate('/')
-    })
+    createUser(data.email, data.password).then((result) => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
+      updateUserProfile(data.name, data.photo).then((result) => {
+        console.log(result);
+        setUser({ ...user?.user, photoURL: data.photo, displayName: data.name });
+        navigate("/");
+      });
+    });
   };
   return (
     <div
@@ -110,6 +113,22 @@ const Register = () => {
             </div>
             <div className="mt-4">
               <label className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200">
+                PhotoURL
+              </label>
+              <input
+                name="name"
+                {...register("photo", { required: true })}
+                className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
+                type="text"
+              />
+              {errors.photo && (
+                <span className="text-red-700 font-semibold text-xs">
+                  This field is required
+                </span>
+              )}
+            </div>
+            <div className="mt-4">
+              <label className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200">
                 Email Address
               </label>
               <input
@@ -138,14 +157,16 @@ const Register = () => {
                   required: true,
                   minLength: 6,
                   maxLength: 20,
-                  pattern:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
+                  pattern:
+                    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
                 })}
                 className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
                 type="password"
               />
               {errors.password?.type === "pattern" && (
                 <p className="text-red-700 z-10 font-semibold text-xs">
-                  Minimum eight characters, at least one letter, one number and one special character
+                  Minimum eight characters, at least one letter, one number and
+                  one special character
                 </p>
               )}
               {errors.password?.type === "required" && (
