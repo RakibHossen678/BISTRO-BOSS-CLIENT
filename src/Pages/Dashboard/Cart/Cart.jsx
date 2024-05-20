@@ -1,11 +1,38 @@
-import { FaDeleteLeft } from "react-icons/fa6";
+import Swal from "sweetalert2";
 import useCart from "../../../Hooks/useCart";
 import Title from "../../Shared/Title";
 import { MdOutlineDelete } from "react-icons/md";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const Cart = () => {
-  const [carts] = useCart();
+  const [carts,refetch] = useCart();
+  const axiosSecure = useAxiosSecure();
   let totalPrice = carts.reduce((total, item) => total + item.price, 0);
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/carts/${id}`).then((res) => {
+          console.log(res.data);
+          if (res.data.deletedCount > 0) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+            refetch()
+          }
+        });
+      }
+    });
+  };
   return (
     <div className="w-9/12 h-[75%]   mx-auto my-10">
       <div>
@@ -32,11 +59,9 @@ const Cart = () => {
               </tr>
             </thead>
             <tbody>
-              {carts.map((cart,idx) => (
+              {carts.map((cart, idx) => (
                 <tr key={idx}>
-                  <th>
-                   {idx+1}
-                  </th>
+                  <th>{idx + 1}</th>
                   <td>
                     <div className="flex items-center gap-3">
                       <div className="avatar">
@@ -49,12 +74,15 @@ const Cart = () => {
                       </div>
                     </div>
                   </td>
-                  <td>
-                    {cart.name}
-                  </td>
+                  <td>{cart.name}</td>
                   <td>${cart.price}</td>
                   <th>
-                  <MdOutlineDelete className="text-2xl bg-[#B91C1C] text-white p-1 rounded-md" size={30}/>
+                    <button onClick={() => handleDelete(cart._id)}>
+                      <MdOutlineDelete
+                        className="text-2xl bg-[#B91C1C] text-white p-1 rounded-md"
+                        size={30}
+                      />
+                    </button>
                   </th>
                 </tr>
               ))}
