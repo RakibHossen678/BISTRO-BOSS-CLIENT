@@ -6,33 +6,31 @@ import useCart from "../../Hooks/useCart";
 
 const FoodCard = ({ item }) => {
   const { user } = useAuth();
-  const [refetch]=useCart()
-  const axiosSecure=useAxiosSecure()
-  const {_id, image, recipe, name, price } = item;
-  const navigate=useNavigate()
-  const location=useLocation()
+  const [, refetch] = useCart();
+  const axiosSecure = useAxiosSecure();
+  const { _id, image, recipe, name, price } = item;
+  const navigate = useNavigate();
+  const location = useLocation();
   const handleAddToCart = () => {
-    if(user && user.email){
-      const cartItem={
-        menuId:_id,
-        email:user.email,
+    if (user && user.email) {
+      const cartItem = {
+        menuId: _id,
+        email: user.email,
         name,
         image,
-        price
-      }
-      axiosSecure.post('/carts',cartItem)
-      .then(res=>{
-        if(res.data.insertedId){
+        price,
+      };
+      axiosSecure.post("/carts", cartItem).then((res) => {
+        if (res.data.insertedId) {
           Swal.fire({
             title: "Good job!",
             text: `${name} added to your cart`,
-            icon: "success"
+            icon: "success",
           });
           refetch()
         }
-      })
-    }
-    else{
+      });
+    } else {
       Swal.fire({
         title: "You are not Logged in",
         text: "Please login to add to the cart",
@@ -40,13 +38,12 @@ const FoodCard = ({ item }) => {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, login"
+        confirmButtonText: "Yes, login",
       }).then((result) => {
         if (result.isConfirmed) {
-          navigate('/login',{state:{from:location}})
+          navigate("/login", { state: { from: location } });
         }
       });
-      
     }
   };
   return (

@@ -3,8 +3,8 @@ import cart from "../../assets/icons8-shopping-cart-64.png";
 import useAuth from "../../Hooks/useAuth";
 import useCart from "../../Hooks/useCart";
 const Navbar = () => {
-  const [carts]=useCart()
-  
+  const [carts] = useCart();
+
   const { user, logout } = useAuth();
   return (
     <div className="navbar bg-[#1515153b] fixed z-10 px-6 py-2">
@@ -48,12 +48,14 @@ const Navbar = () => {
           </li>
 
           <li>
-            <div className="indicator">
-              <span className="indicator-item badge bg-red-500 border-none text-white">
-                {carts.length}
-              </span>
-              <img className="w-12 rounded-full" src={cart} alt="" />
-            </div>
+            <Link to="/dashboard">
+              <div className="indicator">
+                <span className="indicator-item badge bg-red-500 border-none text-white">
+                  {carts.length}
+                </span>
+                <img className="w-12 rounded-full" src={cart} alt="" />
+              </div>
+            </Link>
           </li>
         </ul>
       </div>
@@ -67,7 +69,10 @@ const Navbar = () => {
                 className="btn btn-ghost btn-circle avatar"
               >
                 <div className="w-12 border-2 p-2 rounded-full">
-                  <img alt="Tailwind CSS Navbar component" src={user.photoURL} />
+                  <img
+                    alt="Tailwind CSS Navbar component"
+                    src={user.photoURL}
+                  />
                 </div>
               </div>
               <ul
