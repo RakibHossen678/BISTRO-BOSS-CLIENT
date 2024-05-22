@@ -1,8 +1,11 @@
-import { FaAd, FaCalendar, FaHome, FaLink, FaList, FaShoppingCart } from "react-icons/fa";
+import { FaAd, FaCalendar, FaHome,  FaList, FaShoppingCart } from "react-icons/fa";
 import { FaBookBookmark, FaShop } from "react-icons/fa6";
 import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
+  //TODO:get isAdmin value from database
+
+  const isAdmin=true
   return (
     <div className="flex">
       <div className="w-64 p-4 min-h-screen  bg-[#D1A054]">
