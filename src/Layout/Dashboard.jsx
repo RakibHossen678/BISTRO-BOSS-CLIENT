@@ -9,11 +9,12 @@ import {
 } from "react-icons/fa";
 import { FaBookBookmark, FaShop } from "react-icons/fa6";
 import { Link, NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../Hooks/useAdmin";
 
 const Dashboard = () => {
   //TODO:get isAdmin value from database
 
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
   return (
     <div className="flex">
       <div className="w-64 p-4 min-h-screen  bg-[#D1A054]">

@@ -19,8 +19,8 @@ const useAxiosSecure = () => {
     }
   );
   axiosSecure.interceptors.response.use(
-    (res) => {
-      return res;
+    (response) => {
+      return response;
     },
     async (error) => {
       const status = error.response.status;

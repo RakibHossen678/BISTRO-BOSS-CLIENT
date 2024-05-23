@@ -5,26 +5,20 @@ import { useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
   const { GoogleSignIn } = useAuth();
-  const navigate=useNavigate()
-  const axiosPublic= useAxiosPublic()
+  const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
   const handleGoogleSignUP = () => {
-    GoogleSignIn()
-    .then(result=>{
-        console.log(result.user)
-        const userInfo={
-            name:result.user?.displayName,
-            email:result.user?.email
-        }
-        axiosPublic.post('/user',userInfo)
-        .then(res=>{
-            if(res.data.insertedId){
-             
-              toast.success('User added successfully!')
-              navigate("/");
-            }
-          })
-    })
-    
+    GoogleSignIn().then((result) => {
+      // console.log(result.user);
+      const userInfo = {
+        name: result.user?.displayName,
+        email: result.user?.email,
+      };
+      axiosPublic.post("/users", userInfo).then((res) => {
+        toast.success("User added successfully!");
+          navigate("/");
+      });
+    });
   };
   return (
     <div>
