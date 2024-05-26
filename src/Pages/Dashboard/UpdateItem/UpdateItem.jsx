@@ -1,15 +1,16 @@
-import { FaUtensils } from "react-icons/fa";
-import Title from "../../Shared/Title";
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import Title from "../../Shared/Title";
 import toast from "react-hot-toast";
+import { useLoaderData } from "react-router-dom";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
-const AddItems = () => {
+const UpdateItem = () => {
+  const {_id, name, category, price, recipe} = useLoaderData();
   const axiosPublic = useAxiosPublic();
-  const axiosSecure=useAxiosSecure()
+  const axiosSecure = useAxiosSecure();
   const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
     const { name, category, price, recipe } = data;
@@ -27,10 +28,11 @@ const AddItems = () => {
         recipe,
         image: res.data.data.display_url,
       };
-      const menuRes=await axiosSecure.post('/menu',menuItem)
-      console.log(menuRes.data)
-      if(menuRes.data.insertedId){
-        toast.success('Item added successfully')
+      console.log(menuItem)
+      const menuRes = await axiosSecure.patch(`/menu/${_id}`, menuItem);
+      console.log(menuRes.data);
+      if (menuRes.data.modifiedCount>0) {
+        toast.success("Item updated successfully");
       }
     }
   };
@@ -51,6 +53,7 @@ const AddItems = () => {
                 <input
                   {...register("name", { required: true })}
                   id="name"
+                  defaultValue={name}
                   type="text"
                   placeholder="Recipe name"
                   className="w-full rounded-md focus:ring  py-3 pl-2  mt-4 "
@@ -63,7 +66,7 @@ const AddItems = () => {
                   className="select w-full rounded-md focus:ring focus:ring-opacity-75  border-none  mt-4"
                   {...register("category", { required: true })}
                 >
-                  <option disabled selected>
+                  <option disabled defaultValue={category}>
                     Select a category
                   </option>
                   <option value="salad">Salad</option>
@@ -80,6 +83,7 @@ const AddItems = () => {
                   {...register("price", { required: true })}
                   type="text"
                   placeholder="Price"
+                  defaultValue={price}
                   className="w-full rounded-md focus:ring focus:ring-opacity-75 py-3 pl-2  mt-4 "
                 />
               </div>
@@ -93,6 +97,7 @@ const AddItems = () => {
               <textarea
                 {...register("recipe", { required: true })}
                 placeholder="Recipe Details"
+                defaultValue={recipe}
                 className="textarea border-none text-black textarea-bordered  w-full mt-2"
               ></textarea>
               <div className="mt-4">
@@ -107,7 +112,7 @@ const AddItems = () => {
               type="submit"
               className="flex bg-[#835D23] my-5 px-5 py-3 rounded-md items-center text-white text-lg "
             >
-              Add Item <FaUtensils size={30} className="pl-3"></FaUtensils>{" "}
+              Update Item
             </button>
           </fieldset>
         </form>
@@ -116,4 +121,4 @@ const AddItems = () => {
   );
 };
 
-export default AddItems;
+export default UpdateItem;

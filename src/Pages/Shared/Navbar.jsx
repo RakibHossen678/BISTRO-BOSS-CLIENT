@@ -68,8 +68,9 @@ const Navbar = () => {
                 role="button"
                 className="btn btn-ghost btn-circle avatar"
               >
-                <div className="w-12 border-2 p-2 rounded-full">
+                <div className=" border-2 p-1 rounded-full">
                   <img
+                  className="w-full rounded-full"
                     alt="Tailwind CSS Navbar component"
                     src={user.photoURL}
                   />

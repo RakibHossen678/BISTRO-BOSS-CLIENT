@@ -3,9 +3,10 @@ import useCart from "../../../Hooks/useCart";
 import Title from "../../Shared/Title";
 import { MdOutlineDelete } from "react-icons/md";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
-  const [carts,refetch] = useCart();
+  const [carts, refetch] = useCart();
   const axiosSecure = useAxiosSecure();
   let totalPrice = carts.reduce((total, item) => total + item.price, 0);
   const handleDelete = (id) => {
@@ -27,7 +28,7 @@ const Cart = () => {
               text: "Your file has been deleted.",
               icon: "success",
             });
-            refetch()
+            refetch();
           }
         });
       }
@@ -42,9 +43,17 @@ const Cart = () => {
         <div className="uppercase flex  justify-between font-cinzel font-semibold items-center ">
           <h1 className="text-2xl">Total orders: {carts.length}</h1>
           <h1 className="text-2xl">total price: ${totalPrice}</h1>
-          <button className="bg-[#D1A054] text-white px-2 rounded-md">
-            Pay
-          </button>
+          {carts.length ? (
+            <Link to="/dashboard/payment">
+              <button className="bg-[#D1A054] text-white px-2 rounded-md">
+                Pay
+              </button>
+            </Link>
+          ) : (
+            <button disabled={!carts.length} className="bg-[#D1A054] text-white px-2 rounded-md">
+              Pay
+            </button>
+          )}
         </div>
         <div className="overflow-x-auto py-5">
           <table className="table rounded-lg  ">
