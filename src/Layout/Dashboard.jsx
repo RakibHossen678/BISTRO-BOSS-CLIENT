@@ -9,13 +9,16 @@ import {
 } from "react-icons/fa";
 import { FaBookBookmark, FaShop } from "react-icons/fa6";
 import { Link, NavLink, Outlet } from "react-router-dom";
-// import useAdmin from "../Hooks/useAdmin";
+import useAdmin from "../Hooks/useAdmin";
 
 const Dashboard = () => {
 
-  // const [isAdmin] = useAdmin();
-  // console.log(isAdmin)
-  const isAdmin=false
+  const [isAdmin,isAdminLoading] = useAdmin();
+  if(isAdminLoading){
+    return <p>loading.........</p>
+  }
+  console.log(isAdmin)
+  // const isAdmin=false
   return (
     <div className="flex">
       <div className="w-64 p-4 min-h-screen  bg-[#D1A054]">
@@ -57,7 +60,7 @@ const Dashboard = () => {
               </li>
               <li className="flex items-center space-x-2 hover:text-white py-2 text-lg">
                 <FaCalendar></FaCalendar>
-                <NavLink to="/dashboard/reservation">Reservation</NavLink>
+                <NavLink to="/dashboard/paymentHistory">Payment History</NavLink>
               </li>
               <li className="flex items-center space-x-2 hover:text-white py-2 text-lg">
                 <FaShoppingCart></FaShoppingCart>

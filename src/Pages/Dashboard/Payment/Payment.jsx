@@ -3,7 +3,7 @@ import Title from "../../Shared/Title";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./CheckoutForm";
 
-const stripePromise = loadStripe("");
+const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_key);
 const Payment = () => {
   return (
     <div>

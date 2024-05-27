@@ -50,7 +50,10 @@ const Cart = () => {
               </button>
             </Link>
           ) : (
-            <button disabled={!carts.length} className="bg-[#D1A054] text-white px-2 rounded-md">
+            <button
+              disabled={!carts.length}
+              className="bg-[#D1A054] text-white px-2 rounded-md"
+            >
               Pay
             </button>
           )}
