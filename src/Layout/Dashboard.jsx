@@ -13,12 +13,7 @@ import useAdmin from "../Hooks/useAdmin";
 
 const Dashboard = () => {
 
-  const [isAdmin,isAdminLoading] = useAdmin();
-  if(isAdminLoading){
-    return <p>loading.........</p>
-  }
-  console.log(isAdmin)
-  // const isAdmin=false
+  const [isAdmin] = useAdmin();
   return (
     <div className="flex">
       <div className="w-64 p-4 min-h-screen  bg-[#D1A054]">
@@ -56,7 +51,7 @@ const Dashboard = () => {
             <>
               <li className="flex items-center space-x-2 hover:text-white py-2 text-lg">
                 <FaHome></FaHome>
-                <NavLink to="/dashboard/useHome">User Home</NavLink>
+                <NavLink to="/dashboard/userHome">User Home</NavLink>
               </li>
               <li className="flex items-center space-x-2 hover:text-white py-2 text-lg">
                 <FaCalendar></FaCalendar>

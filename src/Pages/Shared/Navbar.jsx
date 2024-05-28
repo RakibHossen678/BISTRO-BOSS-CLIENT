@@ -2,9 +2,10 @@ import { Link, NavLink } from "react-router-dom";
 import cart from "../../assets/icons8-shopping-cart-64.png";
 import useAuth from "../../Hooks/useAuth";
 import useCart from "../../Hooks/useCart";
+import useAdmin from "../../Hooks/useAdmin";
 const Navbar = () => {
   const [carts] = useCart();
-
+  const [isAdmin] = useAdmin();
   const { user, logout } = useAuth();
   return (
     <div className="navbar bg-[#1515153b] fixed z-10 px-6 py-2">
@@ -43,9 +44,21 @@ const Navbar = () => {
           <li>
             <a>Contact Us</a>
           </li>
-          <li>
-            <a>Dashboard</a>
+          {user && isAdmin && (
+            <li>
+              <Link to="/dashboard/adminHome">
+                <a>Dashboard</a>
+              </Link>
+            </li>
+          )}
+          {user && !isAdmin && (
+            <li>
+            <Link to="/dashboard/userHome">
+              <a>Dashboard</a>
+            </Link>
           </li>
+          )}
+          
 
           <li>
             <Link to="/dashboard">
@@ -70,7 +83,7 @@ const Navbar = () => {
               >
                 <div className=" border-2 p-1 rounded-full">
                   <img
-                  className="w-full rounded-full"
+                    className="w-full rounded-full"
                     alt="Tailwind CSS Navbar component"
                     src={user.photoURL}
                   />

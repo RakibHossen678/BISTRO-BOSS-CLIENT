@@ -15,6 +15,8 @@ import ManageItems from "../Pages/Dashboard/ManageItems/ManageItems";
 import UpdateItem from "../Pages/Dashboard/UpdateItem/UpdateItem";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
+import UserHome from "../Pages/Dashboard/UserHome/UserHome";
+import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
 
 const router = createBrowserRouter([
   {
@@ -33,7 +35,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-     
+
       {
         path: "/shop/:category",
         element: <Shop></Shop>,
@@ -59,6 +61,18 @@ const router = createBrowserRouter([
       {
         path: "cart",
         element: <Cart></Cart>,
+      },
+      {
+        path: "userHome",
+        element: <UserHome></UserHome>,
+      },
+      {
+        path: "adminHome",
+        element: (
+          <AdminRoute>
+            <AdminHome></AdminHome>
+          </AdminRoute>
+        ),
       },
       {
         path: "payment",
@@ -104,7 +118,7 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/menu/${params.id}`),
+          fetch(`https://server-five-omega-98.vercel.app/menu/${params.id}`),
       },
     ],
   },
